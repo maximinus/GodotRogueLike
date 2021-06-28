@@ -1,0 +1,84 @@
+Part 1: Setup
+=============
+
+Welcome to the first part of the Godot Roguelike tutorial.
+
+This tutorial is largely based on the Python tutorial found at http://rogueliketutorials.com/tutorials/tcod/2019/part-1/, which is itself based on a tutorial at http://www.roguebasin.com/index.php?title=Complete_Roguelike_Tutorial,_using_python%2Blibtcod - thanks to the writers of both of these.
+
+This first part is simply to get Godot and some graphics set up.
+
+Go to https://godotengine.org/download and grab the standard version; 64-bit is fine unless you have an older machine.
+
+We'll need some simple graphics as well. I'm using the set found here: https://code.google.com/archive/p/crawl-tiles/downloads. You can use other tiles as well, but one thing to note is that I'll be using 32x32 tiles for this tutorial and it'll be slightly easier to follow if you are doing the same.
+
+The final for now is to create our project.
+
+Open up Godot and choose "New Project"
+
+[image #1]
+
+Click browse to choose a folder to put your project in. add a project name at the top left, then click "Create Folder". Finally, click "Create & Edit". After a little pause, we should be in our project.
+
+We want to copy over some images to use, so before we do that let's organise the project a bit.
+
+Go to the bottom left area to the "Filesystem", right click inside and choose "New Folder". Call it "gfx". Inside that folder, add 2 more folders: "creatures" and "tiles".
+
+Now open up a view of the folder you downloaded earlier. Open up dc-mon and then drag the file "human.png" over the "creatures" folder. Switch back to Godot.
+
+As you drag files into Godot, it will automatically load them in. It may also convert the file into a slightly different format. This is something we don't want to do, but it's easy to fix.
+
+Click on the "human.png" image in godot, and then up to where it says "Scene" in the top left and click the "Import" tab. You'll see that "Filter" is set to on: click it off and then press "Reimport". To ensure we don't have to keep doing this, click the "Preset" and the "Set as default for 'texture'".
+
+Finally, we'll need some tiles. Open up the crawl-tiles folder and navigate to dc-dngn and copy over "stone_brick1.png" to the gfx\tiles folder in Godot. Put the file "dc-dngn\lair0.png" into the same tiles folder.
+
+Now you can exit the editor and Godot, and our project.
+
+
+
+Part 2: Drawing a character and moving
+======================================
+
+Open up Godot again, and this time just choose your project and select "Edit"
+
+So let's think about how Godot works. When Godot is running, it displays a scene. A scene is a simple tree of nodes - those nodes can be all sorts of things, like sprites, lights, sounds, tilemaps and so on.
+
+A scene can also contain other scenes, and this is a way of making editing a lot simpler. Instead of having to edit a complicated scene with every gameplay element on it, we can make every object a seperate, self contained scene that we can then work on.
+
+To start with, we are going to create an object that can be displayed on the screen - the player.
+
+Let's create a scene. We'll do that just by editing the current [empty] one.
+
+For the root scene, select "2D Scene". Now the editor should change to be looking at a 2D scene. Double-click this Node2D and change the name to "Player". This root node does very little, so we need to add a child. Click on the + sign above the Player node, type in "Sprite" to choose a sprite, and then click "Create".
+
+The properties of a node are displayed on the right hand side of the screen. If the sprite node is highlighted, you'll see there's a texture setting that is currently set to empty. Drag and drop the human image we got earlier.
+
+Your 2D screen should contain a box, this is the screen area that will be displayed. Drag the sprite into the middle of the screen somewhere. It's almost time to run our game! To do this, we first need to save the scene. Go Scene -> Save As, create a new folder called "scenes", inside that create a folder "player" and then finally save the scene as "Player". Lastly, press F6 to run this scene. You should see our little sprite on a grey background.
+
+Adding Controls
+---------------
+
+So we need to add some movement, and that means adding code.
+
+Add a script node to the player
+
+Add code:
+
+const SQUARE_SIZE = 32
+
+func _ready():
+	pass
+
+func _process(delta):
+	var move_delta = Vector2(0, 0)
+	if Input.is_action_just_pressed('ui_up'):
+		move_delta.y -= SQUARE_SIZE
+	if Input.is_action_just_pressed('ui_down'):
+		move_delta.y += SQUARE_SIZE
+	if Input.is_action_just_pressed('ui_left'):
+		move_delta.x -= SQUARE_SIZE
+	if Input.is_action_just_pressed('ui_right'):
+		move_delta.x += SQUARE_SIZE
+	position += move_delta
+
+
+Make sure sprite position is (0,0)

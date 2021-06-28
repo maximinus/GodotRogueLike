@@ -1,0 +1,64 @@
+1:Setting Up:
+	Download Godot etc...
+
+2: Draw and move a sprite
+	Add another sprite
+	We make the sprite a universal thing (it's own scene)
+	Double resolution
+
+	# What do we want? A person. Make that. Just an image
+	# Also a world. Make it empty
+	# Keys, to move in the world
+
+3: We make a map and render it
+	We make walls blocking
+	Centre camera on sprite
+
+	# Now we make a world
+	# Lets draw it
+	# Camera focus
+
+4: Generate the map procedurally
+
+	# simple algorithms
+
+5: We add field of view and map unvealing
+
+	# show, and hide
+	# field of view vs 2d lights
+
+6: Place and define an enemy
+	Add them to the map
+	Enemies block
+	Add fight message and console
+	Add procedurally
+	Add a turn, blocked by no AI
+
+7: Add a simple AI
+	Add blocking and non-blocking time
+
+8: Add some sort of UI
+	Health bar, gold, portrait, whatever
+	Define a central store of data (you need remember an inventory)
+	Pull the data for bars from this
+
+9: Add items and inventory
+
+10: Add spells and effects
+	Add a lightning effect and a confusion spell
+	Add sound and improve battles
+
+11: Save and load the game
+	Push out the central store
+	Add a simple ui
+	Add a pause menu
+
+12: Add extra levels
+	Add experience points to character
+
+13: Improve AI placement
+	Make deeper levels harder, with better drops
+	Add weighting for random item drops
+	Add differing items. Add procedural text?
+
+14: Add equipment you can wear
