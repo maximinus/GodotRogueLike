@@ -15,11 +15,11 @@ Now let's start our project.
 
 Open up Godot and choose "New Project"
 
-![Empty Project](https://github.com/maximinus/GodotRogueLike/blob/main/tutorials/images/tut0_empty_project.png "Empty Project")
+![Empty Project](https://raw.githubusercontent.com/maximinus/GodotRogueLike/main/tutorials/images/tut0_empty_project.png "Empty Project")
 
 Click browse to choose a folder to put your project in. add a project name at the top left, then click **Create Folder**. Finally, click **Create & Edit**. After a little pause, we should be in our project.
 
-![New Project](https://github.com/maximinus/GodotRogueLike/blob/main/tutorials/images/tut0_new_project.png "New Project")
+![New Project](https://raw.githubusercontent.com/GodotRogueLike/blob/main/tutorials/images/tut0_new_project.png "New Project")
 
 We want to copy over some images to use, so before we do that let's organise the project a bit.
 
