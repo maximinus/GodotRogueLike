@@ -15,13 +15,15 @@ Now let's start our project.
 
 Open up Godot and choose "New Project"
 
-[image #1](tutorials\images\tut0_new_project.png)
+[Create Project](images\tut0_empty_project.png)
 
-Click browse to choose a folder to put your project in. add a project name at the top left, then click "Create Folder". Finally, click "Create & Edit". After a little pause, we should be in our project.
+Click browse to choose a folder to put your project in. add a project name at the top left, then click **Create Folder**. Finally, click **Create & Edit**. After a little pause, we should be in our project.
+
+[New Project](images\tut0_new_project.png)
 
 We want to copy over some images to use, so before we do that let's organise the project a bit.
 
-Go to the bottom left area to the "Filesystem", right click inside and choose "New Folder". Call it "gfx". Inside that folder, add 2 more folders: "creatures" and "tiles".
+Go to the bottom left area to the **Filesystem**, right click inside and choose "New Folder". Call it "gfx". Inside that folder, add 2 more folders: "creatures" and "tiles".
 
 Now open up a view of the folder you downloaded earlier. Open up dc-mon and then drag the file "human.png" over the "creatures" folder. Switch back to Godot.
 
