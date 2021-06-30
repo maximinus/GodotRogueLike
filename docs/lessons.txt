@@ -1,4 +1,4 @@
-Part 1: Setup
+Part 0: Setup
 =============
 
 Welcome to the first part of the Godot Roguelike tutorial.
@@ -35,7 +35,7 @@ Now you can exit the editor and Godot, and our project.
 
 
 
-Part 2: Drawing a character and moving
+Part 1: Drawing a character and moving
 ======================================
 
 Open up Godot again, and this time just choose your project and select "Edit"
@@ -54,14 +54,28 @@ The properties of a node are displayed on the right hand side of the screen. If 
 
 Your 2D screen should contain a box, this is the screen area that will be displayed. Drag the sprite into the middle of the screen somewhere. It's almost time to run our game! To do this, we first need to save the scene. Go Scene -> Save As, create a new folder called "scenes", inside that create a folder "player" and then finally save the scene as "Player". Lastly, press F6 to run this scene. You should see our little sprite on a grey background.
 
+One last small thing. The position of a node is equal to it's positiom _plus_ it's offset _plus_ it's parent's position. Let's keep things simple by making sure that the offset and position of the sprite are set to zero. Then click on the root node and click the "make sure the object's children are not selectable", which will make sure you can't accidentally select the sprite only when moving (the icon is next to the lock in the upper middle of the screen).
+
+
 Adding Controls
 ---------------
 
-So we need to add some movement, and that means adding code.
+So we need to add some movement. For now we will do the simplest thing possible, but with a thought about the future.
 
-Add a script node to the player
+So the actual code will be fairly simple: every frame we will check the keys being pressed, and then update the position of the sprite. Later on though, this will get slightly more complex, as we will need to check if a wall is in the way. Now our single sprite doesn't know anything about maps, and nor should it really. We will have a seperate "map" scene later to hold that information. But in the same manner our map won't know anything about the player sprite. However, if the player and map are in the same scene, then we can put code in that scene which has a reference to both the player and the sprite.
 
-Add code:
+So let's make that scene. Go ahead and click the little + sign next to the Player scene tab to make a new scene.
+
+Now we have a little book-keeping to get everything setup. Choose 2D scene on the left. Rename the new node "World" and press CTRL+S to save the scene. In the popup save window, go into the scenes folder and create a new folder called world. Finally, click save to save the scene in the folder.
+
+Now we need put the player into the scene. Instead of adding a node to the root node, we need to add our player scene. Click on the chain next to the + above the scene tree - it should say "Instance Scene Node". Of the options given, choose "Player".
+
+You should now see the player scene as a child of "World". Great, we're getting somewhere. Add a script node to the "World" node (click on the icon to the right of the "filter nodes" box). If you've saved the scene in it's own folder, then the script will be saved in the same folder.
+
+Change the script to this:
+
+
+extends Node2D
 
 const SQUARE_SIZE = 32
 
@@ -78,7 +92,52 @@ func _process(delta):
 		move_delta.x -= SQUARE_SIZE
 	if Input.is_action_just_pressed('ui_right'):
 		move_delta.x += SQUARE_SIZE
-	position += move_delta
+	$Player.position += move_delta
 
 
-Make sure sprite position is (0,0)
+Now you _can_ run this scene with F6, but you can also define a "master" scene that is the game. Press F5 and you'll be asked to select this master scene. Choose "world" and from now on F5 will run this scene, whilst F6 will run the scene selected in the editor.
+
+
+
+Resolution
+----------
+
+One more thing we should do is think about resolution. Now you may know that this can be tricky in many game engines, but luckily Godot makes it easy.
+Let's start by defining the screen _ratio_: for most gamers today it's 16:9. So if I went with a horizontal resolution of 800 (800 / 32 = 25 tiles), we need (800/16)*9 = 450 pixels for the vertical resolution. You are quite welcome to change these settings, most of these tutorials will be resolution independant.
+We probably also want the player to able to maximize the screen, change window size and so on.
+
+In Godot, go Project -> Project Settings and scroll down the left hand side until you get to Display:Window. Set the width to 800 and the height to 450. Make sure "Resizeable" is selected but leave the other size flags unchecked for now. Finally, scroll down the right hand size to get to "Stretch", then choose "Mode: Viewport" and "Aspect: Keep". We are done!
+
+Run the game (F5 again) and when the window is open, maximise it. You should see that Godot handles things just fine.
+
+
+
+Part 2: Adding a Map
+====================
+
+
+Great, we have a player. What we need now is a map to move around on.
+
+The map is a different thing from the player, so we will create a new scene for it. So go ahead and make a new scene, call the root node "GameMap", and save it into it's own folder.
+
+Now we can start to create our map. For this, we will use a Godot tilemap, which is simply a grid of tiles - exactly what we want to start with.
+
+Add a tilemap to the "GameMap" node (Click the + sign in the scene tree and search for "tilemap"). Tilemaps are conceptually quite simple, but there is some legwork that is required. First, what kind of tile? Well ours are 32x32, so go to the property inspector on the right and under "Cell" ensure both sizes are 32. You should see the grid become smaller.
+
+Next we need to add some actual tiles for the map to display. Again in the property settings for the tilemap, click on the "empty" on the Tile Set property and choose "New Tileset". Nothing much will have changed after this, so now click on the new Tile Set and you should see the tileset editor appear in the lower middle of your screen. There's no tiles right now, so let's go and add some.
+
+Using the FileSystem display on the bottom left, find the tile images we chose earlier and drag them into the box to the immediate right. At this point *you have no selected any tiles*. You've just told Godot that we are going to take tiles from these images. We need to select what part of the tile to use (even though in both cases it's the whole image).
+
+Click on the tiles you dragged and dropped. Then click "New Single Tile". Click "Enable snap", it makes life a lit easier (the snap will be to the size of the grad, in our case 32*32). Now drag and select the region on the tile (which will be practically automatic now we have snapping done). Repeat the process with the other tile.
+
+You can also edit the names of the tiles if you like. Click on the tile (not the image you chose, the tile), and you should be able to edit the name of the tile in the property inspector.
+
+Now we can finally draw a map. In a minute we'll generate one, but let's start with the easy way. Click on the tilemap in the scene tree. You should see an option of two tiles, so go ahead and draw a simple map.
+
+Not too much work, right? Now we just have to put the map and player together. We'll add them in _another_ new scene. Repeat what you did earlier to create a map scene, but this time name the root node "World". Make sure to save in it's own folder!
+
+Now we'll add the player and map. Instead of adding a node to the root node, we'll add a scene. Click on the chain next to the + - it should say "Instance Scene Node". Of the options givem, choose the GameMap. Then repeat the process to add the player - but make sure the root node is selected when you add, as we want both player and map to be children of the scene root node.
+
+Now the first thing you'll likely see is that the sprite is slightly offset from the correct place. To fix this, we'll have to edit the player scene. In the player scene, set the Player node to 320, 160 (under transform -> position). Also, on the sprite node, ensure Offset -> centered is off. Save the scene, and go back to the world scene.
+
+Run the game with F5. You should be able to move the player around the map.
