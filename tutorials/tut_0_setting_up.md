@@ -3,19 +3,19 @@ Part 0: Setup
 
 Welcome to the first part of the Godot Roguelike tutorial.
 
-This tutorial is largely based on the Python tutorial found at http://rogueliketutorials.com/tutorials/tcod/2019/part-1/, which is itself based on a tutorial at http://www.roguebasin.com/index.php?title=Complete_Roguelike_Tutorial,_using_python%2Blibtcod - thanks to the writers of both of these.
+This tutorial is largely based on the Python tutorial [found here](http://rogueliketutorials.com/tutorials/tcod/2019/part-1/), which is itself based on a [this tutorial](http://www.roguebasin.com/index.php?title=Complete_Roguelike_Tutorial,_using_python%2Blibtcod) - thanks João F. Henriques, George Oliver, Teddy Leach, user TStand90 and probably a host of others as well.
 
-This first part is simply to get Godot and some graphics set up.
+This first part is simply to get Godot and some graphics set up on your local machine.
 
-Go to [the Godot download page](https://godotengine.org/download) and grab the standard version; 64-bit is fine unless you have an older machine.
+Go to [the Godot download page](https://godotengine.org/download) and grab the standard version; 64-bit is fine unless you have an older machine. This tutorial has been tested on v3.3.2, although as we don't do anything particularly fancy you are probably good to go with almost any version 3.2 or upwards.
 
-We'll need some simple graphics as well. I'm using the set [found here](https://code.google.com/archive/p/crawl-tiles/downloads). You can use other tiles as well, but one thing to note is that I'll be using 32x32 tiles for this tutorial and it'll be slightly easier to follow if you are doing the same.
+We'll need some simple graphics as well. I'm using the set [found here](https://code.google.com/archive/p/crawl-tiles/downloads). You can use other tiles as well, but one thing to note is that this set is sized at 32x32 for all tiles and it'll be slightly easier to follow if you are doing the same.
 
 Now let's start our project.
 
 Open up Godot and choose "New Project"
 
-[image #1](image#1)
+[image #1](tutorials\images\tut0_new_project.png)
 
 Click browse to choose a folder to put your project in. add a project name at the top left, then click "Create Folder". Finally, click "Create & Edit". After a little pause, we should be in our project.
 
