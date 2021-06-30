@@ -15,11 +15,15 @@ Now let's start our project.
 
 Open up Godot and choose "New Project"
 
+
 ![Empty Project](https://raw.githubusercontent.com/maximinus/GodotRogueLike/main/tutorials/images/tut0_empty_project.png "Empty Project")
+
 
 Click browse to choose a folder to put your project in. add a project name at the top left, then click **Create Folder**. Finally, click **Create & Edit**. After a little pause, we should be in our project.
 
+
 ![New Project](https://raw.githubusercontent.com/maximinus/GodotRogueLike/main/tutorials/images/tut0_new_project.png "New Project")
+
 
 We want to copy over some images to use, so before we do that let's organise the project a bit.
 
@@ -31,6 +35,10 @@ As you drag files into Godot, it will automatically load them in. It may also co
 
 Click on the "human.png" image in godot, and then up to where it says "Scene" in the top left and click the "Import" tab. You'll see that "Filter" is set to on: click it off and then press "Reimport". To ensure we don't have to keep doing this, click the "Preset" and the "Set as default for 'texture'".
 
-Finally, we'll need some tiles. Open up the crawl-tiles folder and navigate to dc-dngn and copy over "stone_brick1.png" to the gfx\tiles folder in Godot. Put the file "dc-dngn\lair0.png" into the same tiles folder.
 
-Great, we are all setup! Now we can start to make a game!
+![Import Settings](https://raw.githubusercontent.com/maximinus/GodotRogueLike/main/tutorials/images/tut0_import_settings.png "Import Settings")
+
+
+Finally, we'll need some tiles. Open up the crawl-tiles folder and navigate to _dc-dngn\wall_ and copy over _stone_brick1.png_ to the gfx\tiles folder in Godot. Put the file _dc-dngn\floor/lair0.png_ into the same tiles folder.
+
+Great, we are all setup - now we can move on to starting a game!
