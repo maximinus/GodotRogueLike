@@ -9,6 +9,6 @@ The language used is Godot'd built-in GDScript.
 
 ## Tutorials
 
-- [Part 0: Setting Up](/tutorials/tut_0_setting_up.md)
-- [Part 1: Drawing the player and moving them around](/tutorials/tut_1_the_player.md)
-- [Part 2: Rendering a map](/tutorials/tut_2_the_map.md)
+- [Part 0: Setting Up](tutorials/tut_0_setting_up.md)
+- [Part 1: Drawing the player and moving them around](tutorials/tut_1_the_player.md)
+- [Part 2: Rendering a map](tutorials/tut_2_the_map.md)
